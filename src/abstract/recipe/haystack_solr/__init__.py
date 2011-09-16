@@ -29,9 +29,6 @@ class Recipe(object):
             self.buildout['buildout'].get('eggs', '')
         ).strip().split()
 
-        options['host'] = options.get('host', '127.0.0.1').strip()
-        options['port'] = options.get('port', '8070').strip()
-
         options['django-settings'] = options.get('django-settings', '').strip()
         options['django-settings-file'] = options.get(
             'django-settings-file', '').strip()
