@@ -25,7 +25,7 @@ setup(
     packages = find_packages('src'),
     include_package_data = True,
     package_dir = { '': 'src' },
-    namespace_packages = ['abstract', 'recipe'],
+    namespace_packages = ['abstract', 'abstract.recipe'],
     install_requires = [
         'setuptools',
         'zc.buildout',
