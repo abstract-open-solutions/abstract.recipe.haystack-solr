@@ -6,3 +6,9 @@
 *~
 .*.swp
 \#*
+# Ignore buildout
+bin
+parts
+eggs
+develop-eggs
+.installed.cfg
