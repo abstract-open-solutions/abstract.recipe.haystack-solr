@@ -1,6 +1,8 @@
-bin
-develop-eggs
-dist
-eggs
-parts
-var
+# Ignore python compiled files
+*.py[co]
+# Ignore eggs
+*.egg-info
+# Ignore backups
+*~
+.*.swp
+\#*
