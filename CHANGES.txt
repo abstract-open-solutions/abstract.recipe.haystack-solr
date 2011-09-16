@@ -1,0 +1,7 @@
+Changelog
+=========
+
+0.1dev (unreleased)
+===================
+
+- Started work on the basis of ``jarn.jenkins``
