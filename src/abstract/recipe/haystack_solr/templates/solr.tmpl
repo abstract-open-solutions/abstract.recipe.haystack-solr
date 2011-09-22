@@ -1,3 +1,5 @@
+#!{{executable}}
+import sys
 sys.path[0:0] = {{extrapaths}}
 from subprocess import Popen
 import sys, os
@@ -20,7 +22,7 @@ def create_schema():
     from django.core.management import setup_environ
     try:
         imp.acquire_lock()
-        mod = imp.load_source('_django_settings', '{{django_settings_file}}')
+        mod = imp.load_source('_django_settings', '{{djangosettings_file}}')
     except Exception, e:
         imp.release_lock()
         sys.stderr.write("Error loading the settings module '%s': %s"
@@ -29,9 +31,12 @@ def create_schema():
     imp.release_lock()
     # Setup settings
     setup_environ(mod, '_django_settings')
-{{endif}}{{if django_settings}}
-    os.environ['DJANGO_SETTINGS_MODULE'] = '{{django_settings}}'
+{{endif}}{{if djangosettings}}
+    os.environ['DJANGO_SETTINGS_MODULE'] = '{{djangosettings}}'
 {{endif}}
+    {{for line in initialization}}
+    {{line}}
+    {{endfor}}
     from django.core.management import ManagementUtility
     utility = ManagementUtility([
         'manage.py',

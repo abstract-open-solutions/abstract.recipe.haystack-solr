@@ -92,6 +92,12 @@ java-args
     Optional. Extra arguments to pass to the Java Virtual Machine (JVM): this
     are typically all the parameters you'd pass after the jar file.
 
+initialization
+    Optional chunk of code that is needed prior to Django bootstrapping.
+
+environment-vars
+    Environment variables needed prior to Django bootstrapping.
+
 
 Development
 -----------
