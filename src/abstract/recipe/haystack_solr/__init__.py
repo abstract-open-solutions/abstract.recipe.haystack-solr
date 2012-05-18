@@ -195,6 +195,7 @@ class Recipe(object):
             schema_file=schema_file,
             executable=self.buildout['buildout']['executable'],
             extrapaths=[dist.location for dist in working_set],
+            otherpaths=self.options.get('extra-paths', '').split(),
             pidfile=os.path.join(self.var_dir, 'solr.pid'),
             logfile=os.path.join(logdir, 'solr.log'),
             buildoutdir=self.buildout['buildout']['directory'],

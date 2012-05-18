@@ -1,6 +1,9 @@
 #!{{executable}}
 import sys
 sys.path[0:0] = {{extrapaths}}
+{{if otherpaths}}
+sys.path[0:0] = {{otherpaths}}
+{{endif}}
 from subprocess import Popen
 import sys, os
 from signal import SIGTERM
@@ -17,9 +20,9 @@ START_CMD = {{startcmd}}
 SCHEMA_FILE = '{{schema_file}}'
 
 def create_schema():
+    from django.core.management import setup_environ
 {{if djangosettings_file}}
     import imp, logging
-    from django.core.management import setup_environ
     try:
         imp.acquire_lock()
         mod = imp.load_source('_django_settings', '{{djangosettings_file}}')
@@ -32,7 +35,8 @@ def create_schema():
     # Setup settings
     setup_environ(mod, '_django_settings')
 {{endif}}{{if djangosettings}}
-    os.environ['DJANGO_SETTINGS_MODULE'] = '{{djangosettings}}'
+    import {{djangosettings}}
+    setup_environ({{djangosettings}}, '{{djangosettings}}')
 {{endif}}
     {{for line in initialization}}
     {{line}}
